@@ -18,12 +18,18 @@ public class Main {
         System.out.println("1 - Bench Press");
         System.out.println("2 - Dead lift");
         System.out.println("3 - Squat");
+        System.out.println("4 - Check records");
         int selectedExercise = sc.nextInt();
-        System.out.println("Enter your record");
-        int weight = sc.nextInt();
 
-        ExerciseSelector(selectedExercise, weight);
+        if (selectedExercise == 4){
+            ExerciseShower();
 
+        } else {
+
+            System.out.println("Enter your record");
+            int weight = sc.nextInt();
+            ExerciseSelector(selectedExercise, weight);
+        }
     }
 
     static void ExerciseSelector(int selectedExercise, int weight) throws IOException {
@@ -46,5 +52,25 @@ public class Main {
                 System.out.println("Something gone wrong");
                 break;
         }
+    }
+
+    static void ExerciseShower() throws IOException {
+        Scanner sc = new Scanner(System.in);
+
+        BenchPressService benchPressService = new BenchPressService();
+        DeadliftService deadliftService = new DeadliftService();
+        SquatService squatService = new SquatService();
+
+        System.out.println("Which exercise you want to check? ");
+        String selectedExercise = sc.nextLine();
+
+        if(selectedExercise.equals("Bench Press")){
+            benchPressService.ShowExerciseRecords();
+        } else if (selectedExercise.equals("Squat")){
+            squatService.ShowExerciseRecords();
+        } else {
+            deadliftService.ShowExerciseRecords();
+        }
+
     }
 }

@@ -1,11 +1,10 @@
 package Sevices;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class SquatService implements ExerciseAdder{
+public class SquatService implements ExercisesFunctions {
 
     @Override
     public void AddExercise(int weight) throws IOException {
@@ -16,6 +15,8 @@ public class SquatService implements ExerciseAdder{
             fileWriter.write(CurrentDate());
             fileWriter.write(" ");
             fileWriter.write(Integer.toString(weight));
+            fileWriter.write(" ");
+            fileWriter.write("kg");
             fileWriter.write("\n");
         } finally {
             if (fileWriter != null) {
@@ -25,6 +26,19 @@ public class SquatService implements ExerciseAdder{
         }
 
     }
+
+    @Override
+    public void ShowExerciseRecords() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(FileName()));
+        String record = bufferedReader.readLine();
+
+        while ((record != null)){
+            System.out.println(record);
+            record = bufferedReader.readLine();
+        }
+        bufferedReader.close();
+    }
+
     private String FileName(){
         return "BenchPress.txt";
     }

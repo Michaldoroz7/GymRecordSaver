@@ -12,23 +12,33 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
 
-
         System.out.println("Welcome in Gym Record Saver");
-        System.out.println("Which exercise record you want to save ?");
-        System.out.println("1 - Bench Press");
-        System.out.println("2 - Dead lift");
-        System.out.println("3 - Squat");
-        System.out.println("4 - Check records");
-        int selectedExercise = sc.nextInt();
+        int selectedOption = 1;
 
-        if (selectedExercise == 4){
-            ExerciseShower();
+        while(selectedOption != 3) {
 
-        } else {
 
-            System.out.println("Enter your record");
-            int weight = sc.nextInt();
-            ExerciseSelector(selectedExercise, weight);
+        System.out.println("What you want to do ?");
+        System.out.println("1 - Save record");
+        System.out.println("2 - Check records");
+        System.out.println("3 - Exit");
+        selectedOption = sc.nextInt();
+
+            if (selectedOption == 1) {
+                System.out.println("Which exercise record you want to save ?");
+                System.out.println("1 - Bench Press");
+                System.out.println("2 - Dead lift");
+                System.out.println("3 - Squat");
+                int selectedExercise = sc.nextInt();
+                System.out.println("Enter your record");
+                int weight = sc.nextInt();
+                ExerciseSelector(selectedExercise, weight);
+            } else if (selectedOption == 2) {
+                ExerciseShower();
+            } else if (selectedOption == 3) {
+                System.out.println("Bye");
+                break;
+            }
         }
     }
 
